@@ -10,6 +10,9 @@ const app = express();
 import ContactRoutes from "./routes/contacts.routes.js"; // import the routes
 import {connectDB} from "./config/database.js"; // import the database connection
 
+// Note:- Index file k andar hume .env file ko include krne ki jarurat nahi padti hai and baki all other file mai hume include krna pdta hai
+const PORT = process.env.PORT || 3000; // .env se port ko access krne k liye process method ka use krte haii, agar humare paas env mai PORT nahi hai toh hum 3000 port use krenge
+
 // Database Connection
 connectDB(); // function ko run krne k liye
 
@@ -21,6 +24,6 @@ app.use(express.static('public'));
 // Routes
 app.use("/",ContactRoutes); // iska mtlb hai ki humne jo routes/contacts.routes.js file mai export kiya tha usko yaha use kar rahe hai. Here first parameter mai hum prefix likhte hai i.e agar humne /contacts likha toh uske baad wale routes mai /contacts/show-contact likhna padega
 
-app.listen(3000, () => {
-    console.log("Server started successfully on port 3000");
+app.listen(PORT, () => {
+    console.log(`Server started successfully on port ${PORT}`);
 });

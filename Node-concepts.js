@@ -83,4 +83,19 @@ findByIdAndDelete() :- yeh method ek document ko id k base pr delete krne k liye
 7). Code reusability
 8). Improved collaboration
 9). Platform independent
+
+// ------------------ .Env Package File --------------------- //
+
+Note:- Isme hum aise data ko rakhte hai jisme hume security ki zarurat hoti hai and jise hum baar-baar change nahi krte hai jaise ki database ka password, username, and secret key etc. and yeh file humare project mai nahi hoti hai isliye hume yeh file create krni padti hai and is file ko hum git ignore mai daal dete hai taaki yeh file kisi aur k sath share na ho sake
+
+1). A .env(environment) file is used to store environment variables like : 
+    a). Database connection string
+    b). API keys
+    c). Port numbers
+    d). Sensitive credentials (without hardcoding them in the code)
+
+    Benifits :-
+    a). Security - Keep credentials hidden from your codebase
+    b). Portability - Easily switch between different environments (development, testing, production)
+    c). Better Management - Store configuration in a single file
 */
