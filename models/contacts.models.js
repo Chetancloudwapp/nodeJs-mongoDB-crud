@@ -1,5 +1,6 @@
 // const mongoose = require('mongoose');
 import mongoose from "mongoose";
+import mongoosePaginate from "mongoose-paginate-v2" // import the paginate package
 
 // Note:- MongoDB database k andar hum kis collection ka use krna chahte hai use hum schema method ki help se define krte hai
 // Schema is a blueprint of our collection, it is a class which is used to define the properties & structure of our collection.
@@ -21,7 +22,10 @@ const contactSchema = mongoose.Schema({
         type:String
     }
 
-})
+});
+
+
+contactSchema.plugin(mongoosePaginate); // use pagination with plugin method
 
 // Note:- Schema ko kis collection ke andar dalna hai use hum model method ki help se define krte hai here model is a class which is used to communicate with our collection.
 

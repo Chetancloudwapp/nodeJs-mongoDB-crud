@@ -4,9 +4,30 @@ import mongoose from "mongoose" // import mongoose
 // get all contacts
 export const getContacts = async(req, res) => {
     try{
-        const contacts = await Contact.find(); // here Contact is a variable which is defined in the models/contacts.models.js file at top of the file 
-        // res.json(contacts);
-        res.render('home', {contacts: contacts});
+        // const contacts = await Contact.find(); // here Contact is a variable which is defined in the models/contacts.models.js file at top of the file 
+        // // res.json(contacts);
+        // res.render('home', {contacts: contacts});
+
+        // ------------ Pagination Method -------------- //
+        const { page = 1, limit = 3} = req.query; // query se jo bhi value pass hogi vo humare variable mai set hojaygi
+        const options = {
+            page: parseInt(page), // page ki value ko dynamically change krna padega next data ko show krne k liye to uske liye hum javascript ki object Destructuring method ka use karenge
+            limit:parseInt(limit), // dynamically pass the paginate variables
+        }
+        const result = await Contact.paginate({}, options)
+
+        res.render('home', {
+            totalDocs: result.totalDocs,
+            limit: result.limit,
+            totalPages: result.totalPages,
+            currentPage: result.page,
+            counter: result.pagingCounter,
+            hasPrevPage: result.hasPrevPage,
+            hasNextPage: result.hasNextPage,
+            prevPage: result.prevPage,
+            nextPage: result.nextPage,
+            contacts:result.docs
+        });
     }catch(error){
         res.render('500', {message:error});
     }
